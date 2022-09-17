@@ -2,7 +2,7 @@
 
 namespace ApiBackEnd.Models.DataModels
 {
-    public enum Level
+    public enum Nivel
     {
         Basico,
         Intermedio,
@@ -17,6 +17,6 @@ namespace ApiBackEnd.Models.DataModels
         public string Descripcion { get; set; } = string.Empty;
         public string Objetivos { get; set; } = string.Empty;
         public string Requisitos { get; set; } = string.Empty;
-        public Level Level { get; set; }
+        public Nivel Level { get; set; }
     }
 }
