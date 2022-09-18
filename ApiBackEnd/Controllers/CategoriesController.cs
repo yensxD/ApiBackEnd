@@ -10,7 +10,7 @@ using ApiBackEnd.Models.DataModels;
 
 namespace ApiBackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
