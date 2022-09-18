@@ -1,0 +1,5 @@
+﻿
+using LinqSnippet;
+
+Snippets.LinqNumbers();
+
