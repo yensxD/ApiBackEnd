@@ -7,25 +7,45 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiBackEnd.DataAccess;
 using ApiBackEnd.Models.DataModels;
+using ApiBackEnd.Services;
 
 namespace ApiBackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
         private readonly AplicationDbContext _context;
 
-        public StudentsController(AplicationDbContext context)
+        private IStudentService _services;
+        public StudentsController(AplicationDbContext context, IStudentService services)
         {
             _context = context;
+            _services = services;
+        }
+
+        // GET: api/GetStudentsWithCeroCourses
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Student>>> GetStudentsWithCeroCourses()
+        {
+            var resultado = await _services.GetStudentsWithCeroCourses();
+            return resultado.ToList();
+        }
+
+        // GET: api/GetStudentByCourse/{course}
+        [HttpGet("{course}")]
+        public async Task<ActionResult<IEnumerable<Student>>> GetStudentByCourse(string course)
+        {
+            var resultado = await _services.GetStudentByCourse(course);
+            return resultado.ToList();
         }
 
         // GET: api/Students
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudent()
         {
-            return await _context.Student.ToListAsync();
+            var resultado = await _context.Student.ToListAsync();
+            return resultado;
         }
 
         // GET: api/Students/5

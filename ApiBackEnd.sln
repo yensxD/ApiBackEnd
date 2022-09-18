@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiBackEnd", "ApiBackEnd\ApiBackEnd.csproj", "{E04334B3-6BBD-4FE0-AC5F-9A301CAF2433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqSnippet", "LinqSnippet\LinqSnippet.csproj", "{2D3A61B8-C540-4A20-947B-B865F121B5FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqSnippet", "LinqSnippet\LinqSnippet.csproj", "{2D3A61B8-C540-4A20-947B-B865F121B5FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

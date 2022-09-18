@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiBackEnd.Services
 {
-    public class Services
+    public class Services: IServices
     {
         private readonly AplicationDbContext _context;
 
@@ -12,8 +12,7 @@ namespace ApiBackEnd.Services
         {
             _context = context;
         }
-
-
+         
         public async Task<User?> FindUsersByEmail(string Email)
         {
             var resultado = await _context.User.Where(value => value.Email.Equals(Email)).FirstOrDefaultAsync();
@@ -57,6 +56,7 @@ namespace ApiBackEnd.Services
             return resultado;
         }
 
+         
 
     }
 }

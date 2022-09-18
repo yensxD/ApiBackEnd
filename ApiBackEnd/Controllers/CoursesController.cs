@@ -7,18 +7,42 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiBackEnd.DataAccess;
 using ApiBackEnd.Models.DataModels;
+using ApiBackEnd.Services;
 
 namespace ApiBackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CoursesController : ControllerBase
     {
         private readonly AplicationDbContext _context;
+        private ICourseService _services;
 
-        public CoursesController(AplicationDbContext context)
+        public CoursesController(AplicationDbContext context, ICourseService services)
         {
             _context = context;
+            _services = services;
+        }
+        // GET: api/GetCoursesByCategory/{category}
+        [HttpGet("{category}")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategory(string category)
+        {
+            var resultado = await _services.GetCoursesByCategory(category);
+            return resultado.ToList();
+        }
+        // GET: api/GetCoursesWithCeroChapters
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCoursesWithCeroChapters()
+        {
+            var resultado = await _services.GetCoursesWithCeroChapters();
+            return resultado.ToList();
+        }
+        // GET: api/GetCourseByStudent/{}
+        [HttpGet("{IdStudent}")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCourseByStudent(int IdStudent)
+        {
+            var resultado = await _services.GetCourseByStudent(IdStudent);
+            return resultado.ToList();
         }
 
         // GET: api/Courses

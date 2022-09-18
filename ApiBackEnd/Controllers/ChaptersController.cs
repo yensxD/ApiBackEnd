@@ -7,18 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiBackEnd.DataAccess;
 using ApiBackEnd.Models.DataModels;
+using ApiBackEnd.Services;
 
 namespace ApiBackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ChaptersController : ControllerBase
     {
         private readonly AplicationDbContext _context;
-
-        public ChaptersController(AplicationDbContext context)
+        private IChapterService _services;
+        public ChaptersController(AplicationDbContext context, IChapterService services)
         {
             _context = context;
+            _services = services;
+        }
+
+        // GET: api/GetChapterByCourse/{course}
+        [HttpGet("{course}")]
+        public async Task<ActionResult<Chapter?>> GetChapterByCourse(string course)
+        {
+            return await _services.GetChapterByCourse(course);
         }
 
         // GET: api/Chapters
